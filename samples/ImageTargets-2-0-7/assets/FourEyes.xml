@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
+  <Tracking>
+    <ImageTarget size="685.5 914" name="jplane" />
+    <ImageTarget size="247 172.899994" name="jstones" />
+    <ImageTarget size="173 121.099998" name="jchips" />
+  </Tracking>
+</QCARConfig>
