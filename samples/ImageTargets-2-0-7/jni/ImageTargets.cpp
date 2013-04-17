@@ -207,7 +207,8 @@ Java_com_qualcomm_QCARSamples_ImageTargets_ImageTargets_loadTrackerData(JNIEnv *
     }
 
     // Load the data sets:
-    if (!dataSetStonesAndChips->load("StonesAndChips.xml", QCAR::DataSet::STORAGE_APPRESOURCE))
+    // JFN changed from "StonesAndChips.xml" to "FourEyes.xml"
+    if (!dataSetStonesAndChips->load("FourEyes.xml", QCAR::DataSet::STORAGE_APPRESOURCE))
     {
         LOG("Failed to load data set.");
         return 0;
@@ -352,11 +353,13 @@ Java_com_qualcomm_QCARSamples_ImageTargets_ImageTargetsRenderer_renderFrame(JNIE
 
         // Choose the texture based on the target name:
         int textureIndex;
-        if (strcmp(trackable.getName(), "chips") == 0)
+        // JFN changed from "chips" to "jplane"
+        if (strcmp(trackable.getName(), "jplane") == 0)
         {
             textureIndex = 0;
         }
-        else if (strcmp(trackable.getName(), "stones") == 0)
+        // JFN changed from "stones" to "jstones"
+        else if (strcmp(trackable.getName(), "jstones") == 0)
         {
             textureIndex = 1;
         }
