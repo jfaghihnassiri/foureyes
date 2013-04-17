@@ -1,0 +1,6 @@
+ImageTarget.java under src 
+ImageTargets.cpp and other cpp under jni
+
+Note from jicheng: When create function in java and implement it in c code, give function an ID 
+passTargetIDID = env->GetMethodID(activityClass, "function name", "(Ljava/lang/String;)V");
+When implemnting function, pass the ID into the mehtod call
