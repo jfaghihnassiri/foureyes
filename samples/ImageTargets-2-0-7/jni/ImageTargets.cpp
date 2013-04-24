@@ -378,10 +378,10 @@ Java_com_qualcomm_QCARSamples_ImageTargets_ImageTargetsRenderer_renderFrame(JNIE
         // Load model view matrix:
         glMatrixMode(GL_MODELVIEW);
         glLoadMatrixf(modelViewMatrix.data);
-        glTranslatef(0.f, 0.f, kObjectScale);
-        glScalef(kObjectScale, kObjectScale, kObjectScale);
+        glTranslatef(0.f, 0.f, kObjectScale); // JFN this may be the locaton of the teapot
+        glScalef(kObjectScale, kObjectScale, kObjectScale); // JFN this may be scale of the teapot
 
-        // Draw object:
+        // Draw object: // JFN copying this code and pasting could draw two teapots?
         glBindTexture(GL_TEXTURE_2D, thisTexture->mTextureID);
         glTexCoordPointer(2, GL_FLOAT, 0, (const GLvoid*) &teapotTexCoords[0]);
         glVertexPointer(3, GL_FLOAT, 0, (const GLvoid*) &teapotVertices[0]);
@@ -643,7 +643,7 @@ Java_com_qualcomm_QCARSamples_ImageTargets_ImageTargets_setProjectionMatrix(JNIE
     // Cache the projection matrix:
     const QCAR::CameraCalibration& cameraCalibration =
                                 QCAR::CameraDevice::getInstance().getCameraCalibration();
-    projectionMatrix = QCAR::Tool::getProjectionGL(cameraCalibration, 2.0f, 2500.0f);
+    projectionMatrix = QCAR::Tool::getProjectionGL(cameraCalibration, 2.0f, 2500.0f); // JFN working depth
 }
 
 // ----------------------------------------------------------------------------
