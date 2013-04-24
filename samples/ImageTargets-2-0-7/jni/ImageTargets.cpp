@@ -76,7 +76,7 @@ bool isActivityInPortraitMode   = false;
 QCAR::Matrix44F projectionMatrix;
 
 // Constants:
-static const float kObjectScale = 3.f;
+static const float kObjectScale = 1.f; // JFN controls scale, originally was 3.f
 
 QCAR::DataSet* dataSetStonesAndChips    = 0;
 QCAR::DataSet* dataSetTarmac            = 0;
@@ -370,7 +370,7 @@ Java_com_qualcomm_QCARSamples_ImageTargets_ImageTargetsRenderer_renderFrame(JNIE
 
         const Texture* const thisTexture = textures[textureIndex];
 
-#ifdef USE_OPENGL_ES_1_1
+#ifdef USE_OPENGL_ES_1_1 // JFN this is not used!!
         // Load projection matrix:
         glMatrixMode(GL_PROJECTION);
         glLoadMatrixf(projectionMatrix.data);
@@ -378,22 +378,22 @@ Java_com_qualcomm_QCARSamples_ImageTargets_ImageTargetsRenderer_renderFrame(JNIE
         // Load model view matrix:
         glMatrixMode(GL_MODELVIEW);
         glLoadMatrixf(modelViewMatrix.data);
-        glTranslatef(0.f, 0.f, kObjectScale); // JFN this may be the locaton of the teapot
-        glScalef(kObjectScale, kObjectScale, kObjectScale); // JFN this may be scale of the teapot
+        glTranslatef(0.f, 0.f, kObjectScale);
+        glScalef(kObjectScale, kObjectScale, kObjectScale);
 
-        // Draw object: // JFN copying this code and pasting could draw two teapots?
+        // Draw object:
         glBindTexture(GL_TEXTURE_2D, thisTexture->mTextureID);
         glTexCoordPointer(2, GL_FLOAT, 0, (const GLvoid*) &teapotTexCoords[0]);
         glVertexPointer(3, GL_FLOAT, 0, (const GLvoid*) &teapotVertices[0]);
         glNormalPointer(GL_FLOAT, 0,  (const GLvoid*) &teapotNormals[0]);
         glDrawElements(GL_TRIANGLES, NUM_TEAPOT_OBJECT_INDEX, GL_UNSIGNED_SHORT,
                        (const GLvoid*) &teapotIndices[0]);
-#else
+#else // JFN this is the code used :)
 
         QCAR::Matrix44F modelViewProjection;
 
-        SampleUtils::translatePoseMatrix(0.0f, 0.0f, kObjectScale,
-                                         &modelViewMatrix.data[0]);
+        SampleUtils::translatePoseMatrix(100.0f, 300.0f, kObjectScale,
+                                         &modelViewMatrix.data[0]); // JFN controls position, changed 0.0f, 0.0f to 100.0f, 300.0f
         SampleUtils::scalePoseMatrix(kObjectScale, kObjectScale, kObjectScale,
                                      &modelViewMatrix.data[0]);
         SampleUtils::multiplyMatrix(&projectionMatrix.data[0],
@@ -413,6 +413,7 @@ Java_com_qualcomm_QCARSamples_ImageTargets_ImageTargetsRenderer_renderFrame(JNIE
         glEnableVertexAttribArray(normalHandle);
         glEnableVertexAttribArray(textureCoordHandle);
         
+        // JFN is this the draw Duplicate
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, thisTexture->mTextureID);
         glUniform1i(texSampler2DHandle, 0 /*GL_TEXTURE0*/);
@@ -422,6 +423,44 @@ Java_com_qualcomm_QCARSamples_ImageTargets_ImageTargetsRenderer_renderFrame(JNIE
                        (const GLvoid*) &teapotIndices[0]);
 
         SampleUtils::checkGlError("ImageTargets renderFrame");
+
+        //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        // JFN start new code
+        //QCAR::Matrix44F modelViewProjection; // JFN gave re-declaration error
+
+        SampleUtils::translatePoseMatrix(50.0f, 50.0f, kObjectScale,
+                                         &modelViewMatrix.data[0]); // JFN controls position
+        SampleUtils::scalePoseMatrix(kObjectScale, kObjectScale, kObjectScale,
+                                     &modelViewMatrix.data[0]);
+        SampleUtils::multiplyMatrix(&projectionMatrix.data[0],
+                                    &modelViewMatrix.data[0] ,
+                                    &modelViewProjection.data[0]);
+
+        glUseProgram(shaderProgramID);
+
+        glVertexAttribPointer(vertexHandle, 3, GL_FLOAT, GL_FALSE, 0,
+                              (const GLvoid*) &teapotVertices[0]);
+        glVertexAttribPointer(normalHandle, 3, GL_FLOAT, GL_FALSE, 0,
+                              (const GLvoid*) &teapotNormals[0]);
+        glVertexAttribPointer(textureCoordHandle, 2, GL_FLOAT, GL_FALSE, 0,
+                              (const GLvoid*) &teapotTexCoords[0]);
+
+        glEnableVertexAttribArray(vertexHandle);
+        glEnableVertexAttribArray(normalHandle);
+        glEnableVertexAttribArray(textureCoordHandle);
+
+        // JFN is this the draw Duplicate
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, thisTexture->mTextureID);
+        glUniform1i(texSampler2DHandle, 0 /*GL_TEXTURE0*/);
+        glUniformMatrix4fv(mvpMatrixHandle, 1, GL_FALSE,
+                           (GLfloat*)&modelViewProjection.data[0] );
+        glDrawElements(GL_TRIANGLES, NUM_TEAPOT_OBJECT_INDEX, GL_UNSIGNED_SHORT,
+                       (const GLvoid*) &teapotIndices[0]);
+
+        SampleUtils::checkGlError("ImageTargets renderFrame");
+        // JFN end new code
+        //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #endif
 
     }
@@ -643,7 +682,7 @@ Java_com_qualcomm_QCARSamples_ImageTargets_ImageTargets_setProjectionMatrix(JNIE
     // Cache the projection matrix:
     const QCAR::CameraCalibration& cameraCalibration =
                                 QCAR::CameraDevice::getInstance().getCameraCalibration();
-    projectionMatrix = QCAR::Tool::getProjectionGL(cameraCalibration, 2.0f, 2500.0f); // JFN working depth
+    projectionMatrix = QCAR::Tool::getProjectionGL(cameraCalibration, 2.0f, 10000.0f); // JFN working depth, changed 2500.0f to 10000.0f
 }
 
 // ----------------------------------------------------------------------------
