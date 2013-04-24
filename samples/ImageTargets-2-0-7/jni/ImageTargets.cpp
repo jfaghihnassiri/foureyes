@@ -392,7 +392,40 @@ Java_com_qualcomm_QCARSamples_ImageTargets_ImageTargetsRenderer_renderFrame(JNIE
 
         QCAR::Matrix44F modelViewProjection;
 
-        SampleUtils::translatePoseMatrix(100.0f, 300.0f, kObjectScale,
+        float* locsX = new float[4];
+        float* locsY = new float[4];
+        int* colorPot = new int[4]; // Note: 0 gold, 1 purple, 2 red
+
+        locsX[0] = 100.0f;
+        locsY[0] = 100.0f;
+        colorPot[0] = 0; // Gold
+
+        locsX[1] = -100.0f;
+        locsY[1] = -100.0f;
+        colorPot[1] = 1; // Purple
+
+        locsX[2] = 100.0f;
+        locsY[2] = -100.0f;
+        colorPot[2] = 2; // Red
+
+        locsX[3] = 0.0f;
+        locsY[3] = 0.0f;
+        colorPot[3] = 0; // Gold
+
+        float absPotX = 0.0f;
+        float absPotY = 0.0f;
+        float currPotX = 0.0f;
+        float currPotY = 0.0f;
+        Texture* thisTextureUse = textures[0]; // Default to gold
+
+        for(int i = 0; i<4; i++)
+        {
+        	thisTextureUse = textures[colorPot[i]];
+        	currPotX = locsX[i] - absPotX; // JFN this logic needs tweeking
+        	currPotY = locsY[i] - absPotY;
+        	absPotX = locsX[i];
+        	absPotY = locsY[i];
+        SampleUtils::translatePoseMatrix( currPotX, currPotY, kObjectScale,
                                          &modelViewMatrix.data[0]); // JFN controls position, changed 0.0f, 0.0f to 100.0f, 300.0f
         SampleUtils::scalePoseMatrix(kObjectScale, kObjectScale, kObjectScale,
                                      &modelViewMatrix.data[0]);
@@ -415,7 +448,7 @@ Java_com_qualcomm_QCARSamples_ImageTargets_ImageTargetsRenderer_renderFrame(JNIE
         
         // JFN is this the draw Duplicate
         glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, thisTexture->mTextureID);
+        glBindTexture(GL_TEXTURE_2D, thisTextureUse->mTextureID);
         glUniform1i(texSampler2DHandle, 0 /*GL_TEXTURE0*/);
         glUniformMatrix4fv(mvpMatrixHandle, 1, GL_FALSE,
                            (GLfloat*)&modelViewProjection.data[0] );
@@ -424,11 +457,17 @@ Java_com_qualcomm_QCARSamples_ImageTargets_ImageTargetsRenderer_renderFrame(JNIE
 
         SampleUtils::checkGlError("ImageTargets renderFrame");
 
+        }
+        /*
         //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         // JFN start new code
-        //QCAR::Matrix44F modelViewProjection; // JFN gave re-declaration error
 
-        SampleUtils::translatePoseMatrix(50.0f, 50.0f, kObjectScale,
+        const Texture* const thisTextureTwo = textures[1]; // JFN re-used this from above to give this teapot a different color
+
+        float currPotX = -50.0f - firstPotX; // JFN using these so I can have abs pos in this pot
+        float currPotY = -50.0f - firstPotY; // JFN same as above
+
+        SampleUtils::translatePoseMatrix(currPotX, currPotY, kObjectScale,
                                          &modelViewMatrix.data[0]); // JFN controls position
         SampleUtils::scalePoseMatrix(kObjectScale, kObjectScale, kObjectScale,
                                      &modelViewMatrix.data[0]);
@@ -451,8 +490,8 @@ Java_com_qualcomm_QCARSamples_ImageTargets_ImageTargetsRenderer_renderFrame(JNIE
 
         // JFN is this the draw Duplicate
         glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, thisTexture->mTextureID);
-        glUniform1i(texSampler2DHandle, 0 /*GL_TEXTURE0*/);
+        glBindTexture(GL_TEXTURE_2D, thisTextureTwo->mTextureID);
+        glUniform1i(texSampler2DHandle, 0 /*GL_TEXTURE0); // put star/ after TEXTURE0
         glUniformMatrix4fv(mvpMatrixHandle, 1, GL_FALSE,
                            (GLfloat*)&modelViewProjection.data[0] );
         glDrawElements(GL_TRIANGLES, NUM_TEAPOT_OBJECT_INDEX, GL_UNSIGNED_SHORT,
@@ -461,6 +500,7 @@ Java_com_qualcomm_QCARSamples_ImageTargets_ImageTargetsRenderer_renderFrame(JNIE
         SampleUtils::checkGlError("ImageTargets renderFrame");
         // JFN end new code
         //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        */
 #endif
 
     }
