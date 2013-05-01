@@ -21,6 +21,11 @@ obj/local/armeabi-v7a/objs/ImageTargets/ImageTargets.o: \
  /cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/string.h \
  /cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/malloc.h \
  /cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/assert.h \
+ /cygdrive/c/Development/android-ndk-r8/sources/cxx-stl/system/include/cstdlib \
+ /cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/stdlib.h \
+ /cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/alloca.h \
+ /cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/strings.h \
+ /cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/memory.h \
  /cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/GLES2/gl2.h \
  /cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/GLES2/gl2platform.h \
  /cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/KHR/khrplatform.h \
@@ -88,6 +93,16 @@ obj/local/armeabi-v7a/objs/ImageTargets/ImageTargets.o: \
 /cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/malloc.h:
 
 /cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/assert.h:
+
+/cygdrive/c/Development/android-ndk-r8/sources/cxx-stl/system/include/cstdlib:
+
+/cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/stdlib.h:
+
+/cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/alloca.h:
+
+/cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/strings.h:
+
+/cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/memory.h:
 
 /cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/GLES2/gl2.h:
 

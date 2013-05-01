@@ -104,3 +104,4 @@ LOCAL_ARM_MODE := arm
 # library instead.
 
 include $(BUILD_SHARED_LIBRARY)
+#SHARED

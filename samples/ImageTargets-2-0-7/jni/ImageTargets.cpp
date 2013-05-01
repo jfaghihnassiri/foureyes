@@ -17,6 +17,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <assert.h>
+#include <cstdlib>
 
 #ifdef USE_OPENGL_ES_1_1
 #include <GLES/gl.h>
@@ -77,6 +78,18 @@ QCAR::Matrix44F projectionMatrix;
 
 // Constants:
 static const float kObjectScale = 1.f; // JFN controls scale, originally was 3.f
+
+// JFN Struct to hold information
+struct teaData {
+	float x;
+	float y;
+	float size;
+	int color;
+};
+
+// JFN Array of the stucts
+teaData* teaArray = new teaData[20];
+//std::vector<int> teaDat;
 
 QCAR::DataSet* dataSetStonesAndChips    = 0;
 QCAR::DataSet* dataSetTarmac            = 0;
@@ -370,7 +383,7 @@ Java_com_qualcomm_QCARSamples_ImageTargets_ImageTargetsRenderer_renderFrame(JNIE
 
         const Texture* const thisTexture = textures[textureIndex];
 
-#ifdef USE_OPENGL_ES_1_1 // JFN this is not used!!
+#ifdef USE_OPENGL_ES_1_1 // this is not used!!
         // Load projection matrix:
         glMatrixMode(GL_PROJECTION);
         glLoadMatrixf(projectionMatrix.data);
@@ -398,11 +411,11 @@ Java_com_qualcomm_QCARSamples_ImageTargets_ImageTargetsRenderer_renderFrame(JNIE
 
         locsX[0] = 100.0f;
         locsY[0] = 100.0f;
-        colorPot[0] = 0; // Gold
+        colorPot[0] = 2; // Red
 
         locsX[1] = -100.0f;
         locsY[1] = -100.0f;
-        colorPot[1] = 1; // Purple
+        colorPot[1] = 0; // Gold
 
         locsX[2] = 100.0f;
         locsY[2] = -100.0f;
@@ -410,7 +423,7 @@ Java_com_qualcomm_QCARSamples_ImageTargets_ImageTargetsRenderer_renderFrame(JNIE
 
         locsX[3] = 0.0f;
         locsY[3] = 0.0f;
-        colorPot[3] = 0; // Gold
+        colorPot[3] = 1; // Purple
 
         float absPotX = 0.0f;
         float absPotY = 0.0f;
@@ -421,7 +434,7 @@ Java_com_qualcomm_QCARSamples_ImageTargets_ImageTargetsRenderer_renderFrame(JNIE
         for(int i = 0; i<4; i++)
         {
         	thisTextureUse = textures[colorPot[i]];
-        	currPotX = locsX[i] - absPotX; // JFN this logic needs tweeking
+        	currPotX = locsX[i] - absPotX;
         	currPotY = locsY[i] - absPotY;
         	absPotX = locsX[i];
         	absPotY = locsY[i];
@@ -458,49 +471,6 @@ Java_com_qualcomm_QCARSamples_ImageTargets_ImageTargetsRenderer_renderFrame(JNIE
         SampleUtils::checkGlError("ImageTargets renderFrame");
 
         }
-        /*
-        //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        // JFN start new code
-
-        const Texture* const thisTextureTwo = textures[1]; // JFN re-used this from above to give this teapot a different color
-
-        float currPotX = -50.0f - firstPotX; // JFN using these so I can have abs pos in this pot
-        float currPotY = -50.0f - firstPotY; // JFN same as above
-
-        SampleUtils::translatePoseMatrix(currPotX, currPotY, kObjectScale,
-                                         &modelViewMatrix.data[0]); // JFN controls position
-        SampleUtils::scalePoseMatrix(kObjectScale, kObjectScale, kObjectScale,
-                                     &modelViewMatrix.data[0]);
-        SampleUtils::multiplyMatrix(&projectionMatrix.data[0],
-                                    &modelViewMatrix.data[0] ,
-                                    &modelViewProjection.data[0]);
-
-        glUseProgram(shaderProgramID);
-
-        glVertexAttribPointer(vertexHandle, 3, GL_FLOAT, GL_FALSE, 0,
-                              (const GLvoid*) &teapotVertices[0]);
-        glVertexAttribPointer(normalHandle, 3, GL_FLOAT, GL_FALSE, 0,
-                              (const GLvoid*) &teapotNormals[0]);
-        glVertexAttribPointer(textureCoordHandle, 2, GL_FLOAT, GL_FALSE, 0,
-                              (const GLvoid*) &teapotTexCoords[0]);
-
-        glEnableVertexAttribArray(vertexHandle);
-        glEnableVertexAttribArray(normalHandle);
-        glEnableVertexAttribArray(textureCoordHandle);
-
-        // JFN is this the draw Duplicate
-        glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, thisTextureTwo->mTextureID);
-        glUniform1i(texSampler2DHandle, 0 /*GL_TEXTURE0); // put star/ after TEXTURE0
-        glUniformMatrix4fv(mvpMatrixHandle, 1, GL_FALSE,
-                           (GLfloat*)&modelViewProjection.data[0] );
-        glDrawElements(GL_TRIANGLES, NUM_TEAPOT_OBJECT_INDEX, GL_UNSIGNED_SHORT,
-                       (const GLvoid*) &teapotIndices[0]);
-
-        SampleUtils::checkGlError("ImageTargets renderFrame");
-        // JFN end new code
-        //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        */
 #endif
 
     }
