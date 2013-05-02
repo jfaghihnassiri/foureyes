@@ -13,6 +13,8 @@ APP_ABI := armeabi armeabi-v7a
 
 APP_PLATFORM := android-8
 
+APP_STL := gnustl_static
+
 # This optional variable can be defined to either 'release' or
 # 'debug'. This is used to alter the optimization level when
 # building your application's modules.
@@ -28,6 +30,3 @@ APP_PLATFORM := android-8
 # the code difficult, stack traces may not be reliable, etc... 
 
 # APP_OPTIM := release OR debug
-
-#JFN 
-#APP_STL := system

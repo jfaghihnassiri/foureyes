@@ -17,7 +17,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <assert.h>
-#include <cstdlib>
+#include <vector>
 
 #ifdef USE_OPENGL_ES_1_1
 #include <GLES/gl.h>
@@ -79,7 +79,8 @@ QCAR::Matrix44F projectionMatrix;
 // Constants:
 static const float kObjectScale = 1.f; // JFN controls scale, originally was 3.f
 
-// JFN Struct to hold information
+// JFN General globals done below
+// Struct to hold information
 struct teaData {
 	float x;
 	float y;
@@ -87,9 +88,11 @@ struct teaData {
 	int color;
 };
 
-// JFN Array of the stucts
-teaData* teaArray = new teaData[20];
-//std::vector<int> teaDat;
+// Array of the stucts
+std::vector<teaData> teaVect;
+
+// Manually add some teapots
+// TODO
 
 QCAR::DataSet* dataSetStonesAndChips    = 0;
 QCAR::DataSet* dataSetTarmac            = 0;
@@ -415,7 +418,7 @@ Java_com_qualcomm_QCARSamples_ImageTargets_ImageTargetsRenderer_renderFrame(JNIE
 
         locsX[1] = -100.0f;
         locsY[1] = -100.0f;
-        colorPot[1] = 0; // Gold
+        colorPot[1] = 2; // Red
 
         locsX[2] = 100.0f;
         locsY[2] = -100.0f;
@@ -423,7 +426,7 @@ Java_com_qualcomm_QCARSamples_ImageTargets_ImageTargetsRenderer_renderFrame(JNIE
 
         locsX[3] = 0.0f;
         locsY[3] = 0.0f;
-        colorPot[3] = 1; // Purple
+        colorPot[3] = 2; // Red
 
         float absPotX = 0.0f;
         float absPotY = 0.0f;
