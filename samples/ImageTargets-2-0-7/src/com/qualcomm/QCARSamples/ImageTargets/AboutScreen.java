@@ -50,8 +50,10 @@ public class AboutScreen extends Activity implements OnClickListener
     /** Starts the ImageTargets main activity */
     private void startARActivity()
     {
+    	//new AugmentManager().createAugmentation(100, 100, 3, 1);
         Intent i = new Intent(this, ImageTargets.class);
         startActivity(i);
+        
     }
 
 

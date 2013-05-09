@@ -25,20 +25,24 @@ public final class R {
     }
     public static final class drawable {
         public static final int activity_splash_logo=0x7f020000;
-        public static final int blueprint_vuforia=0x7f020001;
-        public static final int ic_launcher=0x7f020002;
-        public static final int splash_background_tile=0x7f020003;
-        public static final int tiled_background=0x7f020004;
+        public static final int aug_button=0x7f020001;
+        public static final int aug_pressed=0x7f020002;
+        public static final int blueprint_vuforia=0x7f020003;
+        public static final int createaug_button_background=0x7f020004;
+        public static final int ic_launcher=0x7f020005;
+        public static final int splash_background_tile=0x7f020006;
+        public static final int tiled_background=0x7f020007;
     }
     public static final class id {
         public static final int about_text=0x7f080000;
-        public static final int activity_splash_title=0x7f080004;
+        public static final int activity_splash_title=0x7f080005;
         public static final int button_start=0x7f080001;
         public static final int camera_overlay_layout=0x7f080002;
+        public static final int create_augmentation=0x7f080004;
         public static final int loading_indicator=0x7f080003;
-        public static final int splash_screen_subtitle=0x7f080005;
-        public static final int vuforia_logo=0x7f080007;
-        public static final int vuforia_splash_logo=0x7f080006;
+        public static final int splash_screen_subtitle=0x7f080006;
+        public static final int vuforia_logo=0x7f080008;
+        public static final int vuforia_splash_logo=0x7f080007;
     }
     public static final class layout {
         public static final int about_screen=0x7f030000;

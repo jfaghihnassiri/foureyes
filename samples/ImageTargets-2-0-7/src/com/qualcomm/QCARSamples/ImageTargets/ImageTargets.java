@@ -21,6 +21,7 @@ import java.util.Vector;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.Color;
@@ -35,12 +36,16 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+//import com.example.android.apis.graphics.FingerPaint;
 import com.qualcomm.QCAR.QCAR;
+//import com.qualcomm.QCARSamples.CloudRecognition.utils.DebugLog;
 
 
 /** The main activity for the ImageTargets sample. */
@@ -80,6 +85,10 @@ public class ImageTargets extends Activity
     // Display size of the device:
     private int mScreenWidth = 0;
     private int mScreenHeight = 0;
+    
+    // JFN button
+    private Button augbutton;
+    private int augCount = 0;
 
     // Constant representing invalid screen orientation to trigger a query:
     private static final int INVALID_SCREEN_ROTATION = -1;
@@ -126,6 +135,8 @@ public class ImageTargets extends Activity
         loadLibrary(NATIVE_LIB_SAMPLE);
     }
 
+    
+    
     /**
      * Creates a handler to update the status of the Loading Dialog from an UI
      * Thread
@@ -591,7 +602,6 @@ public class ImageTargets extends Activity
         System.gc();
     }
 
-
     /** NOTE: this method is synchronized because of a potential concurrent
      * access by ImageTargets::onResume() and InitQCARTask::onPostExecute(). */
     private synchronized void updateApplicationStatus(int appStatus)
@@ -789,6 +799,7 @@ public class ImageTargets extends Activity
 
 
     /** Initializes AR application components. */
+    // JFN go here
     private void initApplicationAR()
     {
         // Do application initialization in native code (e.g. registering
@@ -823,6 +834,35 @@ public class ImageTargets extends Activity
         // Adds the inflated layout to the view
         addContentView(mUILayout, new LayoutParams(LayoutParams.MATCH_PARENT,
                 LayoutParams.MATCH_PARENT));
+        
+        /**
+         * Link the create augmentation button on camera view to the create augmentation page
+         * JFN 
+         */
+        augbutton = (Button) mUILayout
+          .findViewById(com.qualcomm.QCARSamples.ImageTargets.R.id.create_augmentation);
+
+      augbutton.setOnClickListener(new OnClickListener()
+        {
+            public void onClick(View v)
+            {
+            	switch (augCount)
+            	{
+            	case 0: new AugmentManager().createAug(0, 0, 1, 1);
+            			break;
+            	case 1: new AugmentManager().createAug(100, 100, 1, 1);
+    					break;
+            	case 2: new AugmentManager().createAug(-100, 100, 1, 1);
+    					break;
+            	case 3: new AugmentManager().createAug(-100, -100, 1, 1);
+    					break;
+            	case 4: new AugmentManager().createAug(100, -100, 1, 1);
+    					break;
+    			default:	break;
+            	}
+            	augCount++;
+            }	
+        });
     }
 
 

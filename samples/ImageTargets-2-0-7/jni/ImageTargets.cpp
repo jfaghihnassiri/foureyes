@@ -52,6 +52,12 @@ extern "C"
 {
 #endif
 
+// JFN define colors section
+// Note: 0 gold, 1 purple, 2 red
+#define GOLD 0
+#define BLUE 1
+#define RED 2
+
 // Textures:
 int textureCount                = 0;
 Texture** textures              = 0;
@@ -77,7 +83,7 @@ bool isActivityInPortraitMode   = false;
 QCAR::Matrix44F projectionMatrix;
 
 // Constants:
-static const float kObjectScale = 1.f; // JFN controls scale, originally was 3.f
+static float kObjectScale = 1.f; // JFN controls scale, originally was 3.f
 
 // JFN General globals done below
 // Struct to hold information
@@ -89,10 +95,9 @@ struct teaData {
 };
 
 // Array of the stucts
-std::vector<teaData> teaVect;
-
-// Manually add some teapots
-// TODO
+std::vector<teaData> teaAry;
+int firstTime = 1;
+// End mycode this section
 
 QCAR::DataSet* dataSetStonesAndChips    = 0;
 QCAR::DataSet* dataSetTarmac            = 0;
@@ -320,6 +325,16 @@ Java_com_qualcomm_QCARSamples_ImageTargets_ImageTargets_onQCARInitializedNative(
 }
 
 
+void helperFunc()
+{
+    struct teaData tmpPot;
+    tmpPot.x = 0.0f;
+    tmpPot.y = 0.0f;
+    tmpPot.color = BLUE;
+    tmpPot.size = 3.0f;
+    teaAry.push_back(tmpPot);
+}
+
 JNIEXPORT void JNICALL
 Java_com_qualcomm_QCARSamples_ImageTargets_ImageTargetsRenderer_renderFrame(JNIEnv *, jobject)
 {
@@ -408,71 +423,60 @@ Java_com_qualcomm_QCARSamples_ImageTargets_ImageTargetsRenderer_renderFrame(JNIE
 
         QCAR::Matrix44F modelViewProjection;
 
-        float* locsX = new float[4];
-        float* locsY = new float[4];
-        int* colorPot = new int[4]; // Note: 0 gold, 1 purple, 2 red
+        if(firstTime == 1)
+        {
+        	firstTime = 0;
+        	//helperFunc();
+        }
 
-        locsX[0] = 100.0f;
-        locsY[0] = 100.0f;
-        colorPot[0] = 2; // Red
-
-        locsX[1] = -100.0f;
-        locsY[1] = -100.0f;
-        colorPot[1] = 2; // Red
-
-        locsX[2] = 100.0f;
-        locsY[2] = -100.0f;
-        colorPot[2] = 2; // Red
-
-        locsX[3] = 0.0f;
-        locsY[3] = 0.0f;
-        colorPot[3] = 2; // Red
-
+		// Variables used in the loop below
         float absPotX = 0.0f;
         float absPotY = 0.0f;
         float currPotX = 0.0f;
         float currPotY = 0.0f;
-        Texture* thisTextureUse = textures[0]; // Default to gold
+        Texture* thisTextureUse = textures[0];
 
-        for(int i = 0; i<4; i++)
+		// JFN MASTER begin master loop for rendering teapots
+        for(int i = 0; i<teaAry.size(); i++)
         {
-        	thisTextureUse = textures[colorPot[i]];
-        	currPotX = locsX[i] - absPotX;
-        	currPotY = locsY[i] - absPotY;
-        	absPotX = locsX[i];
-        	absPotY = locsY[i];
-        SampleUtils::translatePoseMatrix( currPotX, currPotY, kObjectScale,
-                                         &modelViewMatrix.data[0]); // JFN controls position, changed 0.0f, 0.0f to 100.0f, 300.0f
-        SampleUtils::scalePoseMatrix(kObjectScale, kObjectScale, kObjectScale,
-                                     &modelViewMatrix.data[0]);
-        SampleUtils::multiplyMatrix(&projectionMatrix.data[0],
-                                    &modelViewMatrix.data[0] ,
-                                    &modelViewProjection.data[0]);
+			// Setting up parameters for active teapot
+			thisTextureUse = textures[teaAry[i].color];
+			currPotX = teaAry[i].x - absPotX;
+			currPotY = teaAry[i].y - absPotY;
+			absPotX = teaAry[i].x;
+			absPotY = teaAry[i].y;
+			kObjectScale = teaAry[i].size;
 
-        glUseProgram(shaderProgramID);
-         
-        glVertexAttribPointer(vertexHandle, 3, GL_FLOAT, GL_FALSE, 0,
-                              (const GLvoid*) &teapotVertices[0]);
-        glVertexAttribPointer(normalHandle, 3, GL_FLOAT, GL_FALSE, 0,
-                              (const GLvoid*) &teapotNormals[0]);
-        glVertexAttribPointer(textureCoordHandle, 2, GL_FLOAT, GL_FALSE, 0,
-                              (const GLvoid*) &teapotTexCoords[0]);
+			// Running existing code with plugged in location variables
+			SampleUtils::translatePoseMatrix( currPotX, currPotY, kObjectScale,
+                &modelViewMatrix.data[0]); // JFN controls position, changed 0.0f, 0.0f to 100.0f, 300.0f
+			SampleUtils::scalePoseMatrix(kObjectScale, kObjectScale, kObjectScale,
+                &modelViewMatrix.data[0]);
+			SampleUtils::multiplyMatrix(&projectionMatrix.data[0],
+                &modelViewMatrix.data[0] ,
+                &modelViewProjection.data[0]);
+			glUseProgram(shaderProgramID);
         
-        glEnableVertexAttribArray(vertexHandle);
-        glEnableVertexAttribArray(normalHandle);
-        glEnableVertexAttribArray(textureCoordHandle);
+			glVertexAttribPointer(vertexHandle, 3, GL_FLOAT, GL_FALSE, 0,
+				(const GLvoid*) &teapotVertices[0]);
+			glVertexAttribPointer(normalHandle, 3, GL_FLOAT, GL_FALSE, 0,
+				(const GLvoid*) &teapotNormals[0]);
+			glVertexAttribPointer(textureCoordHandle, 2, GL_FLOAT, GL_FALSE, 0,
+                (const GLvoid*) &teapotTexCoords[0]);
+			glEnableVertexAttribArray(vertexHandle);
+			glEnableVertexAttribArray(normalHandle);
+			glEnableVertexAttribArray(textureCoordHandle);
         
-        // JFN is this the draw Duplicate
-        glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, thisTextureUse->mTextureID);
-        glUniform1i(texSampler2DHandle, 0 /*GL_TEXTURE0*/);
-        glUniformMatrix4fv(mvpMatrixHandle, 1, GL_FALSE,
-                           (GLfloat*)&modelViewProjection.data[0] );
-        glDrawElements(GL_TRIANGLES, NUM_TEAPOT_OBJECT_INDEX, GL_UNSIGNED_SHORT,
-                       (const GLvoid*) &teapotIndices[0]);
+			// Drawing the pot
+			glActiveTexture(GL_TEXTURE0);
+			glBindTexture(GL_TEXTURE_2D, thisTextureUse->mTextureID);
+			glUniform1i(texSampler2DHandle, 0 /*GL_TEXTURE0*/);
+			glUniformMatrix4fv(mvpMatrixHandle, 1, GL_FALSE,
+				(GLfloat*)&modelViewProjection.data[0] );
+			glDrawElements(GL_TRIANGLES, NUM_TEAPOT_OBJECT_INDEX, GL_UNSIGNED_SHORT,
+				(const GLvoid*) &teapotIndices[0]);
 
-        SampleUtils::checkGlError("ImageTargets renderFrame");
-
+			SampleUtils::checkGlError("ImageTargets renderFrame");
         }
 #endif
 
@@ -798,6 +802,19 @@ Java_com_qualcomm_QCARSamples_ImageTargets_ImageTargetsRenderer_updateRendering(
 
     // Reconfigure the video background
     configureVideoBackground();
+}
+
+JNIEXPORT void JNICALL
+Java_com_qualcomm_QCARSamples_ImageTargets_AugmentManager_createAug(JNIEnv*, jobject, jint x, jint y, jint color, jint size)
+{
+    LOG("Java_com_qualcomm_QCARSamples_ImageTargets_AugmentManager_createAug");
+
+    struct teaData tmpPot;
+    tmpPot.x = (float)x;
+    tmpPot.y = (float)y;
+    tmpPot.color = (int)color;
+    tmpPot.size = (float)size;
+    teaAry.push_back(tmpPot);
 }
 
 

@@ -1,0 +1,2 @@
+Compile++ arm    : ImageTargets <= ImageTargets.cpp
+/cygdrive/c/Development/android-ndk-r8/build/core/build-binary.mk:272: recipe for target `obj/local/armeabi/objs/ImageTargets/ImageTargets.o' failed

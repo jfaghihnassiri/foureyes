@@ -1,0 +1,2 @@
+jni/ImageTargets.cpp:92:1: error: 'vector' in namespace 'std' does not name a type
+make: *** [obj/local/armeabi/objs/ImageTargets/ImageTargets.o] Error 1
