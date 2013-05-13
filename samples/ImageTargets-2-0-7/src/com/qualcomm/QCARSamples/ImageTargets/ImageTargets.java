@@ -846,17 +846,27 @@ public class ImageTargets extends Activity
         {
             public void onClick(View v)
             {
-            	switch (augCount)
+            	switch (augCount%10)
             	{
-            	case 0: new AugmentManager().createAug(0, 0, 1, 1);
+            	case 0: new AugmentManager().createAug(0, 0, 0, 1, 1);
             			break;
-            	case 1: new AugmentManager().createAug(100, 100, 1, 1);
+            	case 1: new AugmentManager().createAug(1, 100, 100, 1, 1);
     					break;
-            	case 2: new AugmentManager().createAug(-100, 100, 1, 1);
+            	case 2: new AugmentManager().createAug(2, -100, 100, 1, 1);
     					break;
-            	case 3: new AugmentManager().createAug(-100, -100, 1, 1);
+            	case 3: new AugmentManager().createAug(3, -100, -100, 1, 1);
     					break;
-            	case 4: new AugmentManager().createAug(100, -100, 1, 1);
+            	case 4: new AugmentManager().createAug(4, 100, -100, 1, 1);
+    					break;
+            	case 5: new AugmentManager().deleteAug(3);
+    					break;
+            	case 6: new AugmentManager().deleteAug(2);
+    					break;
+            	case 7: new AugmentManager().deleteAug(1);
+    					break;
+            	case 8: new AugmentManager().deleteAug(4);
+    					break;
+            	case 9: new AugmentManager().deleteAug(0);
     					break;
     			default:	break;
             	}

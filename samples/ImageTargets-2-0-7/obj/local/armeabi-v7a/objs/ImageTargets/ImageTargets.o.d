@@ -1,31 +1,31 @@
 obj/local/armeabi-v7a/objs/ImageTargets/ImageTargets.o: \
  jni/ImageTargets.cpp \
- /cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/jni.h \
- /cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/android/log.h \
- /cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/stdio.h \
- /cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/sys/cdefs.h \
- /cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/sys/cdefs_elf.h \
- /cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/android/api-level.h \
- /cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/sys/types.h \
- /cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/stdint.h \
- /cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/sys/_types.h \
- /cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/machine/_types.h \
- /cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/linux/posix_types.h \
- /cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/linux/stddef.h \
- /cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/linux/compiler.h \
- /cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/asm/posix_types.h \
- /cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/asm/types.h \
- /cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/linux/types.h \
- /cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/machine/kernel.h \
- /cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/sys/sysmacros.h \
- /cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/string.h \
- /cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/malloc.h \
- /cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/assert.h \
- /cygdrive/c/Development/android-ndk-r8/sources/cxx-stl/gnu-libstdc++/4.6/include/vector \
- /cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/GLES2/gl2.h \
- /cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/GLES2/gl2platform.h \
- /cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/KHR/khrplatform.h \
- /cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/GLES2/gl2ext.h \
+ /cygdrive/c/Development/android-ndk-r8d/platforms/android-8/arch-arm/usr/include/jni.h \
+ /cygdrive/c/Development/android-ndk-r8d/platforms/android-8/arch-arm/usr/include/android/log.h \
+ /cygdrive/c/Development/android-ndk-r8d/platforms/android-8/arch-arm/usr/include/stdio.h \
+ /cygdrive/c/Development/android-ndk-r8d/platforms/android-8/arch-arm/usr/include/sys/cdefs.h \
+ /cygdrive/c/Development/android-ndk-r8d/platforms/android-8/arch-arm/usr/include/sys/cdefs_elf.h \
+ /cygdrive/c/Development/android-ndk-r8d/platforms/android-8/arch-arm/usr/include/android/api-level.h \
+ /cygdrive/c/Development/android-ndk-r8d/platforms/android-8/arch-arm/usr/include/sys/_types.h \
+ /cygdrive/c/Development/android-ndk-r8d/platforms/android-8/arch-arm/usr/include/machine/_types.h \
+ /cygdrive/c/Development/android-ndk-r8d/platforms/android-8/arch-arm/usr/include/sys/types.h \
+ /cygdrive/c/Development/android-ndk-r8d/platforms/android-8/arch-arm/usr/include/stdint.h \
+ /cygdrive/c/Development/android-ndk-r8d/platforms/android-8/arch-arm/usr/include/linux/posix_types.h \
+ /cygdrive/c/Development/android-ndk-r8d/platforms/android-8/arch-arm/usr/include/linux/stddef.h \
+ /cygdrive/c/Development/android-ndk-r8d/platforms/android-8/arch-arm/usr/include/linux/compiler.h \
+ /cygdrive/c/Development/android-ndk-r8d/platforms/android-8/arch-arm/usr/include/asm/posix_types.h \
+ /cygdrive/c/Development/android-ndk-r8d/platforms/android-8/arch-arm/usr/include/asm/types.h \
+ /cygdrive/c/Development/android-ndk-r8d/platforms/android-8/arch-arm/usr/include/linux/types.h \
+ /cygdrive/c/Development/android-ndk-r8d/platforms/android-8/arch-arm/usr/include/machine/kernel.h \
+ /cygdrive/c/Development/android-ndk-r8d/platforms/android-8/arch-arm/usr/include/sys/sysmacros.h \
+ /cygdrive/c/Development/android-ndk-r8d/platforms/android-8/arch-arm/usr/include/string.h \
+ /cygdrive/c/Development/android-ndk-r8d/platforms/android-8/arch-arm/usr/include/malloc.h \
+ /cygdrive/c/Development/android-ndk-r8d/platforms/android-8/arch-arm/usr/include/assert.h \
+ /cygdrive/c/Development/android-ndk-r8d/sources/cxx-stl/gnu-libstdc++/4.6/include/vector \
+ /cygdrive/c/Development/android-ndk-r8d/platforms/android-8/arch-arm/usr/include/GLES2/gl2.h \
+ /cygdrive/c/Development/android-ndk-r8d/platforms/android-8/arch-arm/usr/include/GLES2/gl2platform.h \
+ /cygdrive/c/Development/android-ndk-r8d/platforms/android-8/arch-arm/usr/include/KHR/khrplatform.h \
+ /cygdrive/c/Development/android-ndk-r8d/platforms/android-8/arch-arm/usr/include/GLES2/gl2ext.h \
  jni/../../../build/include/QCAR/QCAR.h \
  jni/../../../build/include/QCAR/System.h \
  jni/../../../build/include/QCAR/CameraDevice.h \
@@ -48,57 +48,57 @@ obj/local/armeabi-v7a/objs/ImageTargets/ImageTargets.o: \
  jni/../../../build/include/QCAR/DataSet.h jni/SampleUtils.h \
  jni/Texture.h jni/CubeShaders.h jni/Teapot.h
 
-/cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/jni.h:
+/cygdrive/c/Development/android-ndk-r8d/platforms/android-8/arch-arm/usr/include/jni.h:
 
-/cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/android/log.h:
+/cygdrive/c/Development/android-ndk-r8d/platforms/android-8/arch-arm/usr/include/android/log.h:
 
-/cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/stdio.h:
+/cygdrive/c/Development/android-ndk-r8d/platforms/android-8/arch-arm/usr/include/stdio.h:
 
-/cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/sys/cdefs.h:
+/cygdrive/c/Development/android-ndk-r8d/platforms/android-8/arch-arm/usr/include/sys/cdefs.h:
 
-/cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/sys/cdefs_elf.h:
+/cygdrive/c/Development/android-ndk-r8d/platforms/android-8/arch-arm/usr/include/sys/cdefs_elf.h:
 
-/cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/android/api-level.h:
+/cygdrive/c/Development/android-ndk-r8d/platforms/android-8/arch-arm/usr/include/android/api-level.h:
 
-/cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/sys/types.h:
+/cygdrive/c/Development/android-ndk-r8d/platforms/android-8/arch-arm/usr/include/sys/_types.h:
 
-/cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/stdint.h:
+/cygdrive/c/Development/android-ndk-r8d/platforms/android-8/arch-arm/usr/include/machine/_types.h:
 
-/cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/sys/_types.h:
+/cygdrive/c/Development/android-ndk-r8d/platforms/android-8/arch-arm/usr/include/sys/types.h:
 
-/cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/machine/_types.h:
+/cygdrive/c/Development/android-ndk-r8d/platforms/android-8/arch-arm/usr/include/stdint.h:
 
-/cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/linux/posix_types.h:
+/cygdrive/c/Development/android-ndk-r8d/platforms/android-8/arch-arm/usr/include/linux/posix_types.h:
 
-/cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/linux/stddef.h:
+/cygdrive/c/Development/android-ndk-r8d/platforms/android-8/arch-arm/usr/include/linux/stddef.h:
 
-/cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/linux/compiler.h:
+/cygdrive/c/Development/android-ndk-r8d/platforms/android-8/arch-arm/usr/include/linux/compiler.h:
 
-/cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/asm/posix_types.h:
+/cygdrive/c/Development/android-ndk-r8d/platforms/android-8/arch-arm/usr/include/asm/posix_types.h:
 
-/cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/asm/types.h:
+/cygdrive/c/Development/android-ndk-r8d/platforms/android-8/arch-arm/usr/include/asm/types.h:
 
-/cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/linux/types.h:
+/cygdrive/c/Development/android-ndk-r8d/platforms/android-8/arch-arm/usr/include/linux/types.h:
 
-/cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/machine/kernel.h:
+/cygdrive/c/Development/android-ndk-r8d/platforms/android-8/arch-arm/usr/include/machine/kernel.h:
 
-/cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/sys/sysmacros.h:
+/cygdrive/c/Development/android-ndk-r8d/platforms/android-8/arch-arm/usr/include/sys/sysmacros.h:
 
-/cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/string.h:
+/cygdrive/c/Development/android-ndk-r8d/platforms/android-8/arch-arm/usr/include/string.h:
 
-/cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/malloc.h:
+/cygdrive/c/Development/android-ndk-r8d/platforms/android-8/arch-arm/usr/include/malloc.h:
 
-/cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/assert.h:
+/cygdrive/c/Development/android-ndk-r8d/platforms/android-8/arch-arm/usr/include/assert.h:
 
-/cygdrive/c/Development/android-ndk-r8/sources/cxx-stl/gnu-libstdc++/4.6/include/vector:
+/cygdrive/c/Development/android-ndk-r8d/sources/cxx-stl/gnu-libstdc++/4.6/include/vector:
 
-/cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/GLES2/gl2.h:
+/cygdrive/c/Development/android-ndk-r8d/platforms/android-8/arch-arm/usr/include/GLES2/gl2.h:
 
-/cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/GLES2/gl2platform.h:
+/cygdrive/c/Development/android-ndk-r8d/platforms/android-8/arch-arm/usr/include/GLES2/gl2platform.h:
 
-/cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/KHR/khrplatform.h:
+/cygdrive/c/Development/android-ndk-r8d/platforms/android-8/arch-arm/usr/include/KHR/khrplatform.h:
 
-/cygdrive/c/Development/android-ndk-r8/platforms/android-8/arch-arm/usr/include/GLES2/gl2ext.h:
+/cygdrive/c/Development/android-ndk-r8d/platforms/android-8/arch-arm/usr/include/GLES2/gl2ext.h:
 
 jni/../../../build/include/QCAR/QCAR.h:
 

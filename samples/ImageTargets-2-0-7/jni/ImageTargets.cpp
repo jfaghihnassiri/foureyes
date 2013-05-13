@@ -88,6 +88,7 @@ static float kObjectScale = 1.f; // JFN controls scale, originally was 3.f
 // JFN General globals done below
 // Struct to hold information
 struct teaData {
+	long id;
 	float x;
 	float y;
 	float size;
@@ -805,16 +806,41 @@ Java_com_qualcomm_QCARSamples_ImageTargets_ImageTargetsRenderer_updateRendering(
 }
 
 JNIEXPORT void JNICALL
-Java_com_qualcomm_QCARSamples_ImageTargets_AugmentManager_createAug(JNIEnv*, jobject, jint x, jint y, jint color, jint size)
+Java_com_qualcomm_QCARSamples_ImageTargets_AugmentManager_createAug(JNIEnv*, jobject, jlong id, jint x, jint y, jint color, jfloat size)
 {
     LOG("Java_com_qualcomm_QCARSamples_ImageTargets_AugmentManager_createAug");
 
     struct teaData tmpPot;
+	tmpPot.id = id;
     tmpPot.x = (float)x;
     tmpPot.y = (float)y;
     tmpPot.color = (int)color;
-    tmpPot.size = (float)size;
+    tmpPot.size = size;
     teaAry.push_back(tmpPot);
+}
+
+JNIEXPORT void JNICALL
+Java_com_qualcomm_QCARSamples_ImageTargets_AugmentManager_deleteAug(JNIEnv*, jobject, jlong id)
+{
+    LOG("Java_com_qualcomm_QCARSamples_ImageTargets_AugmentManager_deleteAug");
+
+    int numPots = teaAry.size();
+	int toDel = -1;
+	for( int i = 0; i<numPots; i++)
+	{
+		if( teaAry[i].id == id )
+		{
+			toDel = i;
+		}
+	}
+	if( toDel == -1 )
+	{
+		LOG("JFN deleteAug id was not found in the vector");
+	}
+	else
+	{
+		teaAry.erase(teaAry.begin()+toDel);
+	}
 }
 
 
