@@ -1,22 +1,23 @@
 Guide to foureyes git: Vuforia code and Streamer code
 
 Table of Contents -
-	Getting Started
-	Vuforia Code
-	Streamer Code
-	Next Steps
-	Contact
+	Getting Started;
+	Vuforia Code;
+	Streamer Code;
+	Next Steps;
+	Alternative;
+	Contact;
 
 Getting Started - 
-	Prerequisits
-		Java
-		Eclipse
-			Egit (optional)
-		Android SDK
-		Android NDK
-		Vuforia
-		Cygwin
-		Git
+	Prerequisits -
+		Java;
+		Eclipse;
+			Egit (optional);
+		Android SDK;
+		Android NDK;
+		Vuforia;
+		Cygwin;
+		Git;
 	For more details visit the Vuforia installation guide on their website.
 
 Vuforia Code - 
@@ -123,11 +124,23 @@ Streamer Code -
 	I have thus far been unable to ndk-build the jni code for the streamer, as I get an error. This is where I left off. 
 	
 Next Steps -
-	1. Debug jni code for Streamer and make sure the standalone app works (streams video over ip)
+	1. Debug jni code for Streamer and make sure the standalone app works (streams video over ip) [see alternative]
 	2. Find way to access phones camera, even though QCAR from Vuforia is accessing it (need fix from Qualcomm for this, hack workaround has 3fps maximum framerate, not good enough)
 	3. Find a way to stream metadata (eventually, this will be camera position information) along with each frame, or in a way which is matched with each frame. 
 	4. Combine Streamer app functionality into foureyes Vuforia app such that the enhanced vuforia code function, and the screen is sent to the receiving end WITH metadata.
-	
+
+Alternative - 
+	If it is found the the Streamer code for live555 has no hope, here is an alternative option called android-eye, or "Wifi Camer". In the main foureyes folder there is a folder called android-eye which contains the code for an open source project. 
+	Here is some info about that open source project. 
+	1. JNI code is heavily used in encoding, streaming, quantizing, etc.
+	2. When the app is launched the phone boots up a webserver. The code for the webserver is under /assets
+	3. Accessing the URL shown on the app screen takes you to the hosted webserver from the phone, where the videostream of the phone is displayed. 
+	4. Much of the webserver code is written in JQuery and JavaScript (not familiar with languages, can't comment any further)
+	5. I have a hunch this function in VideoFrame.java is where the camera feed is set as the video for the server.
+		    public InputStream getInputStream() {
+				return videoInputStream;
+			}
+	6. The suggested solution would be to tap into wherever the video is fed to the IP stream for future use, and to tap into the receiving end of frames through IP. 
 Contact - 
 	For questions or comments contact:
 	Jhon Faghih-Nassiri
