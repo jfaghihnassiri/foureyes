@@ -142,7 +142,3 @@ Alternative -
 			}
 	6. The suggested solution would be to tap into wherever the video is fed to the IP stream for future use, and to tap into the receiving end of frames through IP. 
 Contact - 
-	For questions or comments contact:
-	Jhon Faghih-Nassiri
-	jfaghihnassiri@gmail.com
-	619-549-9991
